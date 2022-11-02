@@ -35,7 +35,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: mark.turchik@outlook.com/blizzard-api-conapp:${{ github.sha }}
+          tags: mturchik/blizzard-api-proxy:${{ github.sha }}
           file: ./Dockerfile
           context: ./
 

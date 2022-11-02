@@ -1,0 +1,14 @@
+{
+  "profiles": {
+    "BlizzardApiProxy": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7048"
+    },
+    "Docker": {
+      "commandName": "Docker",
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
+      "httpPort": 32372,
+      "useSSL": false
+    }
+  }
+}

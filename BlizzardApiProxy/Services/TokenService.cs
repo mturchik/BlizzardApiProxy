@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.Configuration;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System.Net.Http.Headers;
 using System.Text;
 
@@ -10,9 +9,9 @@ public class TokenService
     private readonly HttpClient _httpClient;
     private TokenResponse? Token { get; set; }
 
-    public TokenService(IConfiguration configuration)
+    public TokenService(IHttpClientFactory httpClientFactory, IConfiguration configuration)
     {
-        _httpClient = HttpClientFactory.Create();
+        _httpClient = httpClientFactory.CreateClient();
         _configuration = configuration;
     }
 
@@ -29,7 +28,7 @@ public class TokenService
         var authResponse = _httpClient.Send(authRequest);
         authResponse.EnsureSuccessStatusCode();
 
-        Token = await authResponse.Content.ReadAsAsync<TokenResponse>();
+        Token = await authResponse.Content.ReadFromJsonAsync<TokenResponse>();
         if (Token is null) throw new ApplicationException("Failed to authenticate");
 
         // Set expires timestamp to ensure active token

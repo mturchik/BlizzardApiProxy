@@ -8,7 +8,6 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 COPY ["BlizzardApiProxy.csproj", "BlizzardApiProxy/"]
-#COPY ["BlizzardApiProxy/BlizzardApiProxy.csproj", "BlizzardApiProxy/"]
 RUN dotnet restore "BlizzardApiProxy/BlizzardApiProxy.csproj"
 COPY . .
 WORKDIR "/src/BlizzardApiProxy"

@@ -32,6 +32,7 @@ on:
 
 env:
   AWS_REGION: us-east-2                           # set this to your preferred AWS region, e.g. us-west-1
+  ECR_REGISTRY: public.ecr.aws/r7q9z8v5           # public registry string
   ECR_REPOSITORY: blizzard-api-proxy              # set this to your Amazon ECR repository name
   ECS_SERVICE: blizzard-api-proxy-service         # set this to your Amazon ECS service name
   ECS_CLUSTER: blizzard-api-proxy                 # set this to your Amazon ECS cluster name

@@ -1,7 +1,7 @@
 using BlizzardApiProxy.Services;
 using Microsoft.AspNetCore.Mvc;
 
-namespace WebApplication1.Controllers;
+namespace BlizzardApiProxy.Controllers;
 [ApiController]
 [Route("[controller]")]
 public class CharacterController : ControllerBase

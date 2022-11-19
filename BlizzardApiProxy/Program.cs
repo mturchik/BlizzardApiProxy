@@ -1,35 +1,31 @@
 using BlizzardApiProxy.Services;
 
-namespace BlizzardApiProxy;
-public class Program
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddHttpClient();
+builder.Services.AddSingleton<TokenService>();
+builder.Services.AddScoped<ProfileService>();
+
+builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen(c =>
 {
-    public static void Main(string[] args)
-    {
-        var builder = WebApplication.CreateBuilder(args);
+    c.SwaggerDoc("v1", new() { Title = "Blizzard Api Proxy", Version = "v1" });
+});
 
-        builder.Services.AddHttpClient();
-        builder.Services.AddSingleton<TokenService>();
-        builder.Services.AddScoped<ProfileService>();
+var app = builder.Build();
 
-        builder.Services.AddControllers();
-        builder.Services.AddEndpointsApiExplorer();
-        builder.Services.AddSwaggerGen();
-
-        var app = builder.Build();
-
-        // Configure the HTTP request pipeline.
-        if (app.Environment.IsDevelopment())
-        {
-            app.UseSwagger();
-            app.UseSwaggerUI();
-        }
-
-        app.UseHttpsRedirection();
-
-        app.UseAuthorization();
-
-        app.MapControllers();
-
-        app.Run();
-    }
+// Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
+
+app.UseHttpsRedirection();
+
+app.UseAuthorization();
+
+app.MapControllers();
+
+app.Run();
